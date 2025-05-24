@@ -16,14 +16,26 @@ public class ArticleService {
 		this.articleDao = articleDao;
 	}
 
-	public int writeArticle(String title, String content) {
-		return this.articleDao.writeArticle(title, content);
+	public void writeArticle(String title, String content, int loginedMemberId, int boardId) {
+		this.articleDao.writeArticle(title, content, loginedMemberId, boardId);
 	}
 
-	public List<Article> getArticles() {
-		return this.articleDao.getArticles();
+	public List<Article> getArticles(String keyWord, String searchType, int boardId, int articlesInPage, int limitFrom) {
+		return this.articleDao.getArticles(keyWord, searchType, boardId, articlesInPage, limitFrom);
 	}
 
+	public int getArticlesCnt(int boardId, String keyWord, String searchType) {
+		return this.articleDao.getArticlesCnt(boardId, keyWord, searchType);
+	}
+	
+	public int getArticleslike(int memberId, int relId, String relTypeCode) {
+		return this.articleDao.getArticleslike(memberId, relId, relTypeCode);
+	}
+	
+	public Article getArticle(int id, String relTypeCode) {
+		return this.articleDao.getArticle(id, relTypeCode);
+	}
+	
 	public Article getArticleById(int id) {
 		return this.articleDao.getArticleById(id);
 	}
@@ -35,4 +47,9 @@ public class ArticleService {
 	public void deleteArticle(int id) {
 		this.articleDao.deleteArticle(id);
 	}
+
+	public int getLastArticleId() {
+		return this.articleDao.getLastArticleId();
+	}
+
 }
